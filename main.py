@@ -61,8 +61,6 @@ def command() -> None:
             f"-i {input_file} {output_file}"),
         3: f"ffmpeg -f concat -i concat.txt {output_file}"
     }
-    # os.system('mkdir OSSS')
-    # os.system('cmd --window -- cmd -c "ipconfig"')
     for index in action:
         if window.comboBox.currentIndex() == index:
             cmd = action[index]
@@ -93,7 +91,9 @@ def get_sys_info():
         url_link = ('https://github.com/BtbN/FFmpeg-Builds/releases/download/'
                     'latest/ffmpeg-master-latest-win64-gpl.zip')
         if not Path('ffmpeg.exe').exists():
-            return set_lang(addition=True)[2] + f"<a href='{url_link}'>ffmpeg</a>"
+            return (f"{set_lang(addition=True)[2]}<a href='{url_link}'>"
+                    f"ffmpeg-master-latest-win64-gpl.zip</a>, "
+                    f"(<a href='{url}'>ffmpeg</a>)")
 
 
 if __name__ == "__main__":
