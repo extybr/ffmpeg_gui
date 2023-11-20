@@ -1,5 +1,9 @@
 .gitignore
 __project__.lnk
+ffmpeg.exe
+concat.txt
+ffmpeg.cmd
+*.mp4
 # Environments
 .env
 .venv

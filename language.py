@@ -1,0 +1,30 @@
+lang = {
+        'english': {
+            0: 'language select',
+            1: 'original file',
+            2: 'output file',
+            3: 'action',
+            4: 'command',
+            5: 'start',
+            6: 'conversion only',
+            7: 'trim without conversion',
+            8: 'converting and cropping',
+            9: 'gluing video',
+            10: 'select input file',
+            11: 'select output file',
+        },
+        'русский': {
+            0: 'выбор языка',
+            1: 'исходный файл',
+            2: 'выходной файл',
+            3: 'действие',
+            4: 'команда',
+            5: 'старт',
+            6: 'только конвертирование',
+            7: 'обрезка без конвертиции',
+            8: 'конвертирование и обрезка',
+            9: 'склеивание видео',
+            10: 'выбрать исходный файл',
+            11: 'выбрать выходной файл',
+        }
+    }
