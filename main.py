@@ -8,17 +8,19 @@ from language import lang
 
 def set_lang(addition=False) -> None | tuple:
     current_text = window.comboBox_2.currentText()
-    window.label.setText(lang[current_text][1])
-    window.label_2.setText(lang[current_text][2])
-    window.label_3.setText(lang[current_text][0])
-    window.label_5.setText(lang[current_text][3])
-    window.label_4.setText(lang[current_text][13])
-    window.label_6.setText(lang[current_text][14])
-    window.pushButton.setText(lang[current_text][4])
-    window.comboBox.clear()
-    item = lang[current_text]
-    window.comboBox.addItems([item[5], item[6], item[7], item[8]])
-    if addition:
+    if not addition:
+        current_text = window.comboBox_2.currentText()
+        window.label.setText(lang[current_text][1])
+        window.label_2.setText(lang[current_text][2])
+        window.label_3.setText(lang[current_text][0])
+        window.label_5.setText(lang[current_text][3])
+        window.label_4.setText(lang[current_text][13])
+        window.label_6.setText(lang[current_text][14])
+        window.pushButton.setText(lang[current_text][4])
+        window.comboBox.clear()
+        item = lang[current_text]
+        window.comboBox.addItems([item[5], item[6], item[7], item[8]])
+    else:
         return (lang[current_text][9], lang[current_text][10],
                 lang[current_text][11], lang[current_text][12])
 
@@ -28,7 +30,20 @@ def select_file_path(choice) -> None:
     src, dst = _src.split(' '), _dst.split(' ')
     msg = src[1] if choice == 'input' else dst[1]
     message = f'{src[0]} {msg} {src[2]}'
-    file_path = QtWidgets.QFileDialog.getOpenFileName(window, message, '.')[0]
+    file_path = ''
+    if window.comboBox.currentIndex() == 3 and choice == 'input':
+        files_path = QtWidgets.QFileDialog.getOpenFileNames(window, message, '.')[0]
+        files = [Path(i).name for i in files_path]
+        file_path = ', '.join(files)
+        with open('concat.txt', 'w', encoding='utf-8') as txt:
+            text = ''
+            for file in files:
+                text += f'file {file}\n'
+            txt.write(text)
+    elif choice == 'input':
+        file_path = QtWidgets.QFileDialog.getOpenFileName(window, message, '.')[0]
+    elif choice == 'output':
+        file_path = QtWidgets.QFileDialog.getSaveFileName(window, message, '.')[0]
     (window.lineEdit.setText(file_path) if choice == 'input'
      else window.lineEdit_3.setText(file_path))
 
@@ -65,7 +80,7 @@ def command() -> None:
         if window.comboBox.currentIndex() == index:
             cmd = action[index]
             try:
-                run(cmd, shell=True, encoding='866')
+                run(cmd, shell=True)
             except Exception as e:
                 window.textBrowser.append(str(e))
             else:
@@ -84,7 +99,7 @@ def functional() -> None:
     app.exec_()
 
 
-def get_sys_info():
+def get_sys_info() -> str | None:
     url = 'https://ffmpeg.org/download.html'
     os_system = system()
     if os_system == 'Windows':
