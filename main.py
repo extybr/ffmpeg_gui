@@ -1,28 +1,33 @@
 from subprocess import run
 from platform import system
 from pathlib import Path
+from json import load
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
-from language import lang
+
+
+def get_lang() -> dict:
+    with open('language.json', 'r', encoding='utf-8') as js:
+        return load(js)['lang']
 
 
 def set_lang(addition=False) -> None | tuple:
     current_text = window.comboBox_2.currentText()
     if not addition:
         current_text = window.comboBox_2.currentText()
-        window.label.setText(lang[current_text][1])
-        window.label_2.setText(lang[current_text][2])
-        window.label_3.setText(lang[current_text][0])
-        window.label_5.setText(lang[current_text][3])
-        window.label_4.setText(lang[current_text][13])
-        window.label_6.setText(lang[current_text][14])
-        window.pushButton.setText(lang[current_text][4])
+        window.label.setText(lang[current_text]['1'])
+        window.label_2.setText(lang[current_text]['2'])
+        window.label_3.setText(lang[current_text]['0'])
+        window.label_5.setText(lang[current_text]['3'])
+        window.label_4.setText(lang[current_text]['13'])
+        window.label_6.setText(lang[current_text]['14'])
+        window.pushButton.setText(lang[current_text]['4'])
         window.comboBox.clear()
         item = lang[current_text]
-        window.comboBox.addItems([item[5], item[6], item[7], item[8]])
+        window.comboBox.addItems([item['5'], item['6'], item['7'], item['8']])
     else:
-        return (lang[current_text][9], lang[current_text][10],
-                lang[current_text][11], lang[current_text][12])
+        return (lang[current_text]['9'], lang[current_text]['10'],
+                lang[current_text]['11'], lang[current_text]['12'])
 
 
 def select_file_path(choice) -> None:
@@ -112,6 +117,7 @@ def get_sys_info() -> str | None:
 
 
 if __name__ == "__main__":
+    lang = get_lang()
     app = QtWidgets.QApplication([])
     window = uic.loadUi("ffmpeg.ui")
     functional()

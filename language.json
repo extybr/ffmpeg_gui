@@ -1,0 +1,38 @@
+{
+  "lang": {
+    "english": {
+      "0": "language select",
+      "1": "original file",
+      "2": "output file",
+      "3": "action",
+      "4": "start",
+      "5": "conversion only",
+      "6": "trim without conversion",
+      "7": "converting and cropping",
+      "8": "gluing video",
+      "9": "select input file",
+      "10": "select output file",
+      "11": "the ffmpeg file is missing, download it to the folder from the link: ",
+      "12": "done",
+      "13": "start time",
+      "14": "end time"
+    },
+    "русский": {
+      "0": "выбор языка",
+      "1": "исходный файл",
+      "2": "выходной файл",
+      "3": "действие",
+      "4": "старт",
+      "5": "только конвертирование",
+      "6": "обрезка без конвертиции",
+      "7": "конвертирование и обрезка",
+      "8": "склеивание видео",
+      "9": "выбрать исходный файл",
+      "10": "выбрать выходной файл",
+      "11": "отсутствует файл ffmpeg, скачайте в его папку этой по ссылке: ",
+      "12": "выполнено",
+      "13": "начальное время",
+      "14": "конечное время"
+    }
+  }
+}
