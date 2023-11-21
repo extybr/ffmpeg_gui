@@ -74,12 +74,12 @@ def command() -> None:
     start_time = window.timeEdit.time().toPyTime()
     end_time = window.timeEdit_2.time().toPyTime()
     action = {
-        0: f"ffmpeg -i {input_file} {output_file}",
-        1: (f"ffmpeg -ss {start_time} -to {end_time} -i {input_file} "
-            f"-c copy {output_file}"),
-        2: (f"ffmpeg -y -ss {start_time} -to {end_time} "
-            f"-i {input_file} {output_file}"),
-        3: f"ffmpeg -f concat -i concat.txt {output_file}"
+        0: f'ffmpeg -i "{input_file}" "{output_file}"',
+        1: (f'ffmpeg -ss {start_time} -to {end_time} -i "{input_file}" '
+            f'-c copy "{output_file}"'),
+        2: (f'ffmpeg -y -ss {start_time} -to {end_time} '
+            f'-i "{input_file}" "{output_file}"'),
+        3: f'ffmpeg -f concat -i concat.txt "{output_file}"'
     }
     for index in action:
         if window.comboBox.currentIndex() == index:
